@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Saludar a {{ nombre }}{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>Hola, {{ nombre }}!</h1>
+    <a class="btn btn-default" href="/saludar">Volver</a>
+</div>
+{% endblock %}
