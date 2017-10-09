@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 import csv
 from datetime import datetime
-from flask import Flask, render_template, redirect, url_for, flash
+from flask import Flask, render_template, redirect, url_for, flash, session
 from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_script import Manager
@@ -48,6 +48,7 @@ def ingresar():
             while registro:
                 if formulario.usuario.data == registro[0] and formulario.password.data == registro[1]:
                     flash('Bienvenido')
+                    session['username'] = formulario.usuario.data
                     return render_template('ingresado.html')
                 registro = next(archivo_csv, None)
             else:
@@ -70,6 +71,23 @@ def registrar():
         else:
             flash('Las passwords no matchean')
     return render_template('registrar.html', form=formulario)
+
+
+@app.route('/secret', methods=['GET'])
+def secreto():
+    if 'username' in session:
+        return render_template('private.html', username=session['username'])
+    else:
+        return render_template('sin_permiso.html')
+
+@app.route('/logout', methods=['GET'])
+def logout():
+    if 'username' in session:
+        session.pop('username')
+        return render_template('logged_out.html')
+    else:
+        return redirect(url_for('index'))
+
 
 if __name__ == "__main__":
     # app.run(host='0.0.0.0', debug=True)

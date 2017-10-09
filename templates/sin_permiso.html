@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %}Shit{% endblock %}
+
+{% block page_content %}
+<div class="page-header">
+    <h1>No tenés permisos para estar acá.</h1>
+    <a href={{ url_for('ingresar') }} class="btn btn-info">Ingresar<a>
+</div>
+{% endblock %}
