@@ -3,14 +3,14 @@ import csv
 from datetime import datetime
 from flask import Flask, render_template, redirect, url_for, flash, session
 from flask_bootstrap import Bootstrap
-from flask_moment import Moment
+# from flask_moment import Moment
 from flask_script import Manager
 from forms import LoginForm, SaludarForm, RegistrarForm
 
 app = Flask(__name__)
 manager = Manager(app)
 bootstrap = Bootstrap(app)
-moment = Moment(app)
+# moment = Moment(app)
 
 app.config['SECRET_KEY'] = 'un string que funcione como llave'
 
