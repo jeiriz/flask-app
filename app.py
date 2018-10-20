@@ -14,9 +14,11 @@ bootstrap = Bootstrap(app)
 
 app.config['SECRET_KEY'] = 'un string que funcione como llave'
 
+
 @app.route('/')
 def index():
     return render_template('index.html', fecha_actual=datetime.utcnow())
+
 
 @app.route('/saludar', methods=['GET', 'POST'])
 def saludar():
@@ -26,17 +28,21 @@ def saludar():
         return redirect(url_for('saludar_persona', usuario=formulario.usuario.data))
     return render_template('saludar.html', form=formulario)
 
+
 @app.route('/saludar/<usuario>')
 def saludar_persona(usuario):
     return render_template('usuarios.html', nombre=usuario)
+
 
 @app.errorhandler(404)
 def no_encontrado(e):
     return render_template('404.html'), 404
 
+
 @app.errorhandler(500)
 def error_interno(e):
     return render_template('500.html'), 500
+
 
 @app.route('/ingresar', methods=['GET', 'POST'])
 def ingresar():
@@ -79,6 +85,7 @@ def secreto():
         return render_template('private.html', username=session['username'])
     else:
         return render_template('sin_permiso.html')
+
 
 @app.route('/logout', methods=['GET'])
 def logout():
