@@ -24,8 +24,12 @@
             <ul class="nav navbar-nav">
                 <li><a href="/">Inicio</a></li>
                 <li><a href="/saludar">Saludar</a></li>
+                {% if 'username' in session %}
+                <li><a href="/logout">Salir</a></li>
+                {% else %}
                 <li><a href="/ingresar">Ingresar</a></li>
                 <li><a href="/registrar">Registrarse</a></li>
+                {% endif %}
             </ul>
         </div>
     </div>
