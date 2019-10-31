@@ -9,3 +9,8 @@ repositorio:
 pipenv install
 ```
 
+## Ejecutar
+
+```bash
+pipenv run python app.py
+```
