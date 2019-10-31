@@ -1,8 +1,10 @@
 #!/usr/bin/env python
 import csv
 from datetime import datetime
+
 from flask import Flask, render_template, redirect, url_for, flash, session
 from flask_bootstrap import Bootstrap
+
 from forms import LoginForm, SaludarForm, RegistrarForm
 
 
@@ -20,7 +22,7 @@ def index():
 @app.route('/saludar', methods=['GET', 'POST'])
 def saludar():
     formulario = SaludarForm()
-    if formulario.validate_on_submit():
+    if formulario.validate_on_submit():  # Acá hice el POST si es True
         print(formulario.usuario.name)
         return redirect(url_for('saludar_persona', usuario=formulario.usuario.data))
     return render_template('saludar.html', form=formulario)
