@@ -18,13 +18,13 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Flog</a>
+     <a class="navbar-brand" href="/">Conesa</a>
         </div>
         <div class="navbar-collapse collapse">
+
             <ul class="nav navbar-nav">
-                <li><a href="/">Inicio</a></li>
-                <li><a href="/saludar">Saludar</a></li>
                 {% if 'username' in session %}
+
                 <li><a href="/logout">Salir</a></li>
                 {% else %}
                 <li><a href="/ingresar">Ingresar</a></li>
@@ -37,6 +37,7 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="container">
     {% for message in get_flashed_messages() %}
     <div class="alert alert-warning">

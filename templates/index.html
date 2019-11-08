@@ -1,9 +1,23 @@
 {% extends "base.html" %}
 
-{% block title %}Index{% endblock %}
+{% block title %}Inicio{% endblock %}
 
 {% block page_content %}
 <div class="page-header">    
-    <h1>Bienvenido a Flog!</h1>
+    <h1>Conesa, el sabor del encuentro</h1>
 </div>
+<div>
+{% if 'username' in session %}
+
+
+{% else %}
+ <p>Para iniciar sesión haga click <a href="/ingresar">aquí</a>. Si todavía no se registró ingrese al siguiente<a href="/registrarse"> link</a></p>
+ {% endif %}
+
+<p>noticias</p>
+</div>
+
+
 {% endblock %}
+
+

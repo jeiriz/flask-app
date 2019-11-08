@@ -1,11 +1,10 @@
-#!/usr/bin/env python
 import csv
 from datetime import datetime
 
 from flask import Flask, render_template, redirect, url_for, flash, session
 from flask_bootstrap import Bootstrap
 
-from forms import LoginForm, SaludarForm, RegistrarForm
+from forms import LoginForm, RegistrarForm
 
 
 app = Flask(__name__)
@@ -19,18 +18,17 @@ def index():
     return render_template('index.html', fecha_actual=datetime.utcnow())
 
 
-@app.route('/saludar', methods=['GET', 'POST'])
-def saludar():
-    formulario = SaludarForm()
-    if formulario.validate_on_submit():  # Acá hice el POST si es True
-        print(formulario.usuario.name)
-        return redirect(url_for('saludar_persona', usuario=formulario.usuario.data))
-    return render_template('saludar.html', form=formulario)
+# @app.route('/saludar', methods=['GET', 'POST'])
+# def saludar():
+#     formulario = SaludarForm()
+#     if formulario.validate_on_submit():  # Acá hice el POST si es True
+#         print(formulario.usuario.name)
+#         return redirect(url_for('saludar_persona', usuario=formulario.usuario.data))
+#     return render_template('saludar.html', form=formulario)
 
-
-@app.route('/saludar/<usuario>')
-def saludar_persona(usuario):
-    return render_template('usuarios.html', nombre=usuario)
+# @app.route('/saludar/<usuario>')
+# def saludar_persona(usuario):
+#     return render_template('usuarios.html', nombre=usuario)
 
 
 @app.errorhandler(404)
@@ -38,9 +36,9 @@ def no_encontrado(e):
     return render_template('404.html'), 404
 
 
-@app.errorhandler(500)
-def error_interno(e):
-    return render_template('500.html'), 500
+# @app.errorhandler(500)
+# def error_interno(e):
+#     return render_template('500.html'), 500
 
 
 @app.route('/ingresar', methods=['GET', 'POST'])
@@ -52,9 +50,9 @@ def ingresar():
             registro = next(archivo_csv)
             while registro:
                 if formulario.usuario.data == registro[0] and formulario.password.data == registro[1]:
-                    flash('Bienvenido')
+                    # flash('Bienvenido') cartel advertencia
                     session['username'] = formulario.usuario.data
-                    return render_template('ingresado.html')
+                    return render_template('ingresado.html',usuario=session['username'])
                 registro = next(archivo_csv, None)
             else:
                 flash('Revisá nombre de usuario y contraseña')
