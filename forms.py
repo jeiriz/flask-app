@@ -10,5 +10,5 @@ class LoginForm(FlaskForm):
 
 
 class RegistrarForm(LoginForm):
-    password_check = PasswordField('Verificar Contraseña', validators=[Required()])
+    password_check = PasswordField('Verificar Contraseña', validators=[Required()]) #se hereda la el campo de pass y se agrgea el campo de verificacion
     enviar = SubmitField('Registrarse')

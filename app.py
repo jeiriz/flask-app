@@ -16,8 +16,6 @@ app.config['SECRET_KEY'] = 'un string que funcione como llave'
 @app.route('/')
 def index():
     return render_template('index.html', fecha_actual=datetime.utcnow())
-
-
 # @app.route('/saludar', methods=['GET', 'POST'])
 # def saludar():
 #     formulario = SaludarForm()
@@ -53,26 +51,26 @@ def ingresar():
                     # flash('Bienvenido') cartel advertencia
                     session['username'] = formulario.usuario.data
                     return render_template('ingresado.html',usuario=session['username'])
-                registro = next(archivo_csv, None)
+                registro = next(archivo_csv, None)#para salir del while le paso parametro None
             else:
-                flash('Revisá nombre de usuario y contraseña')
+                flash('Los datos ingresados son incorrectos')
                 return redirect(url_for('ingresar'))
     return render_template('login.html', formulario=formulario)
 
 
 @app.route('/registrar', methods=['GET', 'POST'])
 def registrar():
-    formulario = RegistrarForm()
+    formulario = RegistrarForm() #instancia objeto en formulario, al hacer eso trae metodos y var
     if formulario.validate_on_submit():
-        if formulario.password.data == formulario.password_check.data:
+        if formulario.password.data == formulario.password_check.data: #si la pass la coloco igual en los dos campos <password, verificar password>
             with open('usuarios', 'a+') as archivo:
                 archivo_csv = csv.writer(archivo)
-                registro = [formulario.usuario.data, formulario.password.data]
+                registro = [formulario.usuario.data, formulario.password.data] #al registro le agrego lista con user y pass para usarse como csv <columnas y filas> si no, no hay salto linea, van a haber tantos elementos d elista como columnas o titulos
                 archivo_csv.writerow(registro)
-            flash('Usuario creado correctamente')
+            flash('Se ha creado tu usuario correctamente!')
             return redirect(url_for('ingresar'))
         else:
-            flash('Las passwords no matchean')
+            flash('Las contraseñas no coinciden')
     return render_template('registrar.html', form=formulario)
 
 

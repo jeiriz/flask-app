@@ -1,10 +1,11 @@
 {% extends "base.html" %}
 
-{% block title %}Shit{% endblock %}
+{% block title %}PERMISO DENEGADO{% endblock %}
 
 {% block page_content %}
 <div class="page-header">
-    <h1>No tenés permisos para estar acá.</h1>
-    <a href={{ url_for('ingresar') }} class="btn btn-info">Ingresar<a>
+    <h1>Intruso detectado</h1>
+    <p>Si ingresaste aquí por error puedes acceder al siguiente <a href={{ url_for('ingresar') }} class="btn btn-info">link</a> para salir</p>
 </div>
 {% endblock %}
+
