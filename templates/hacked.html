@@ -1,14 +1,21 @@
- {% extends "base.html" %}
-
-{% block title %}HACKED{% endblock %}
+{% extends "base.html" %}
+<!-- Template al que sos mandado cuando intentas ingresar al endpoint "SECRET" sin estar logueado -->
+{% block title %}IDIOT{% endblock %}
 
 {% block page_content %}
+<!-- ALERTA DE JS -->
+<script language="JavaScript" type="text/javascript">
+alert("YOU HAS BEEN HACKED");
+</script>
+
 <div class="page-header">
-    <h1>No confies en desconocidos</h1>
- <p>Ip: </p>
- <p>Ubicación: </p>
+    <h1>Nunca confies en desconocidos</h1>
 </div>
 {% endblock %}
-
-
-
+{% block saraza %}
+<!-- Debería haber una funcion para conseguir la ip publica y la geolocalizacion en base a esa ip -->
+<div>
+ <h4 style="text-decoration:underline">Ip: </h4> <h4>{{ ip }}</h4>
+ <h4 style="text-decoration:underline">Ubicacion: </h4><h4>Rivadavia 755, piso 3, departamento 15 </h4>	
+</div>
+{% endblock %}

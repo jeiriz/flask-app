@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Error 500{% endblock %}
+
+{% block navbar %} {% endblock %}
+<!-- TEMPLATE 404 ERROR -->
+{% block page_content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/500.css') }}">
+<h1 class="500h1">AAAAAAAAAAAA</h1>
+<P class="505p">Algo anda mal</P>
+
+{% endblock %}

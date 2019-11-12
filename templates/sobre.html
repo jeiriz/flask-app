@@ -1,0 +1,56 @@
+{% extends "/base.html" %}
+
+{% block title%} Sobre mi {% endblock %}
+
+<!-- Nav sacado de bootstrap -->
+{% block page_content %}
+
+<p>
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+  <a class="nav-link active" data-toggle="collapse" href="#realizado" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Realizado por
+  </a>
+   </li>
+   <li class="nav-item">
+  <a class="nav-link active" data-toggle="collapse" href="#materia" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Materia
+  </a>
+   </li>
+     <li class="nav-item">
+  <a class="nav-link active" data-toggle="collapse" href="#profesor" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Profesor
+  </a>
+   </li>
+     <li class="nav-item">
+  <a class="nav-link active" data-toggle="collapse" href="#ciclo" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Ciclo
+  </a>
+   </li>
+ </p>
+</ul>
+
+
+<!-- Despliega info de botones-->
+<div class="collapse" id="realizado">
+  <li class="card card-body">
+   Lic. Juan Cruz Eiriz
+  </li>
+</div>
+<div class="collapse" id="materia">
+  <li class="card card-body">
+   Paradigmas de programación
+  </li>
+</div>
+<div class="collapse" id="profesor">
+  <li class="card card-body">
+   Leando E. Colombo Viña del Mar
+  </li>
+</div>
+<div class="collapse" id="ciclo">
+  <li class="card card-body">
+   2019
+  </li>
+</div>
+	
+{% endblock %}

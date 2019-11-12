@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Listado de Clientes{% endblock %}
+
+{% block page_content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<div> <!-- Tabla creada a partir de la Lista -->
+	<div class="container-fluid">
+		<p class='alert alert-info'> En nuestra DB existen {{cont}} clientes</p> <!-- Contador obtenido de la funcion clientesCont -->
+		<table class="table table-bordered table-condensed clientes">
+			<tbody>
+                {% for linea in lista %}
+                    <tr class="active">                
+                        {% for item in  linea %}
+                        <td >{{item}}</td> <!-- Creo celda por cada item -->
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

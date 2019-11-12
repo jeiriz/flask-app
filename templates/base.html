@@ -18,13 +18,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-     <a class="navbar-brand" href="/">Conesa</a>
+     <a class="navbar-brand" href="/logged">Conesa</a>
         </div>
         <div class="navbar-collapse collapse">
 
             <ul class="nav navbar-nav">
                 {% if 'username' in session %}
-
+                <li><a href="/clientes">Listado de Clientes</a></li>
+                <li><a href="/sobre">Sobre</a></li>
                 <li><a href="/logout">Salir</a></li>
                 {% else %}
                 <li><a href="/ingresar">Ingresar</a></li>
@@ -37,7 +38,6 @@
 {% endblock %}
 
 {% block content %}
-
 <div class="container">
     {% for message in get_flashed_messages() %}
     <div class="alert alert-warning">
@@ -46,6 +46,7 @@
     </div>
     {% endfor %}
     {% block page_content %}{% endblock %}
+    {% block saraza %}{% endblock %} <!-- Bloque usado en HACKED.HTML -->
 </div>
 {% endblock %}
 

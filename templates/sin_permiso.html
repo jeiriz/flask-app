@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-
+<!-- CUANDO SE QUIERE INGRESAR A LA PAGINA "SECRET" SIN ESTAR LOGUEADO -->
 {% block title %}PERMISO DENEGADO{% endblock %}
 
 {% block page_content %}
 <div class="page-header">
     <h1>Intruso detectado</h1>
-    <p>Si ingresaste aquí por error puedes acceder al siguiente <a href={{ url_for('ingresar') }} class="btn btn-info">link</a> para salir</p>
+    <p>Si ingresaste aquí por error puedes acceder al siguiente <a href={{ url_for('hacked') }} class="btn btn-info">link</a> para salir</p> <!-- Peque;a trampa jeje -->
 </div>
 {% endblock %}
 

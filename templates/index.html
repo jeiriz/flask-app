@@ -1,22 +1,19 @@
 {% extends "base.html" %}
-
-{% block title %}Inicio{% endblock %}
+<!-- Template inicio -->
+{% block title %}Bienvenido {{usuario}}!{% endblock %}
 
 {% block page_content %}
 <div class="page-header">    
     <h1>Conesa, el sabor del encuentro</h1>
 </div>
 <div>
-{% if 'username' in session %}
+{% if 'username' not in session %}
+<p>Para iniciar sesión haga click <a href="/ingresar">aquí</a>. Si todavía no se registró ingrese al siguiente<a href="/registrarse"> link</a></p>
 
-
-{% else %}
- <p>Para iniciar sesión haga click <a href="/ingresar">aquí</a>. Si todavía no se registró ingrese al siguiente<a href="/registrarse"> link</a></p>
- {% endif %}
-
-<p>noticias</p>
+{%else%}
+<h4><a href="https://www.xataka.com/">Noticias</a></h4>
+{% endif %}
 </div>
-
 
 {% endblock %}
 
