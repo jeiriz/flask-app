@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Pais{% endblock %}
+
+{% block page_content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<div>
+    <div class="container-fluid">
+        <p class='alert alert-info'> En nuestra DB existen {{cont}} clientes</p>
+
+<!-- INICIO TABLA -->
+
+        <table class="table table-bordered table-condensed">
+            <tr class="cliente"> <!-- filas -->
+                {% for e in firstRow %}
+                    <th>{{ e }}</th>  <!-- negrita -->        
+                {% endfor %}
+            </tr>  
+                {% for cliente in lista %}
+                    <tr> 
+                    {% for k,v in cliente.items() %}  
+                        <td>{{ v }}</td> <!-- celda -->
+                    {% endfor %}
+                    </tr>
+                {% endfor %}       
+        </table> 
+
+<!-- FIN TABLA -->
+
+    </div>
+</div>
+
+{% endblock %}

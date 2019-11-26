@@ -10,7 +10,7 @@
 		<table class="table table-bordered table-condensed clientes">
 			<tbody>
                 {% for linea in lista %}
-                    <tr class="active">                
+                    <tr class="active">    <!-- `bloque fila -->            
                         {% for item in  linea %}
                         <td >{{item}}</td> <!-- Creo celda por cada item -->
                         {% endfor %}

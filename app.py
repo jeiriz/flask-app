@@ -6,7 +6,7 @@ from flask import Flask, render_template, redirect, url_for, flash, session, req
 from flask import jsonify,make_response
 from flask_bootstrap import Bootstrap
 
-from forms import LoginForm, RegistrarForm
+from forms import LoginForm, RegistrarForm, SearchForm
 
 app = Flask(__name__)
 bootstrap = Bootstrap(app)
@@ -29,6 +29,23 @@ def no_encontrado(e):
 @app.route('/500')
 def Error500():
     return render_template('500.html'), 500
+
+#obtengo IP PUBLICA del que hace el request
+@app.route('/hacked', methods=["GET"])
+def hacked():
+    ip= request.remote_addr #proxy (intermediario) entorno desarollo
+    return render_template('hacked.html',ip=ip)
+
+@app.route('/secret', methods=['GET'])
+def secret():
+    if 'username' in session:
+        with open('usuarios.csv', encoding='utf-8') as archivoCsv:
+            users = csv.reader(archivoCsv)
+            lista=list(users)
+            return render_template('secret.html',lista=lista)
+    else:
+        return render_template('sin_permiso.html')
+
 
 @app.route('/ingresar', methods=['GET', 'POST'])
 def ingresar():
@@ -70,15 +87,6 @@ def registrar():
             flash('Las contraseñas no coinciden')
     return render_template('registrar.html', form=formulario)
 
-
-#obtengo IP PUBLICA del que hace el request
-@app.route('/hacked', methods=["GET"])
-def hacked():
-    ip= request.remote_addr
-    return render_template('hacked.html',ip=ip)
-
-
-
 #Consigo cantidad de clientes tabla
 def clientesCont():
     with open('clientes.csv', encoding='utf-8') as archivo:
@@ -87,7 +95,9 @@ def clientesCont():
         for i in archivoCsv:
             cont+=1
     return cont
+
  
+ #'''''''''''''''''''''''''''''''''''''''' 
 
 #Transformo en lista el archivo CSV y Utilizo la funcion anteriores para mostrar todo en un mismo template "clientes.html"
 @app.route('/clientes', methods=['GET'])
@@ -95,13 +105,55 @@ def clientesListado():
     if 'username' in session:  
         with open('clientes.csv', encoding='utf-8') as archivoCsv:
             clientes = csv.reader(archivoCsv)
-            lista=list(clientes)
+            lista=list(clientes) #listas por cada fila
             cont=clientesCont()  #llamo contador (funcion modularizada y reutilizable)
         return render_template('clientes.html',lista=lista,cont=cont)
     else:
         return redirect(url_for('ingresar'))
 
-  
+def dictCsv(csvArc):
+    archivoCsv=open(csvArc, encoding='utf-8')
+    lista=csv.DictReader(archivoCsv)
+    return lista
+
+@app.route('/buscador', methods=['GET','POST'])
+def buscadorPais():
+    if 'username' in session:
+        listado=dictCsv("clientes.csv")
+        formulario = SearchForm() #instancia objeto en formulario para poder usarlo
+        pais=formulario.search.data #Argentina
+        if formulario.validate_on_submit(): #si llena el buscador
+            paises=[]
+            for i in listado:
+                if pais in i['País'] : #si Argentina se encuentra en columna Pais
+                    paises.append(i['País']) #agerga el pais encontrado
+            if paises: #si tiene contenido
+                flash("Búsqueda exitosa")
+            else:
+                flash('No se encontraron paises')
+            return render_template('buscador.html',paises=paises, formulario=formulario)#me guardo pais buscado para hipervinculo y lista para imprimir
+        return render_template('buscador.html',formulario=formulario)
+    return redirect(url_for('ingresar'))
+
+
+#Tiene que vincular un template donde aparezca una tabla con el filtro aplicado
+@app.route('/buscador/<i>') #pais
+def resultadoBuscadorPais(i):
+    if 'username' in session:
+        with open('clientes.csv', encoding='utf-8') as archivoCsv:
+            listado = csv.DictReader(archivoCsv) 
+            firstRow=next(listado) #funcion nico, permite obtener primera linea
+            lista=[]
+            for columna in listado:
+                if columna['País'] == i:
+                    lista.append(columna) #si el pais elegido es igual a el contenido de la columna agrega la filalista=lista
+            cont=len(lista)
+            return render_template('buscadorpais.html',lista=lista,cont=cont,firstRow=firstRow)
+    return redirect(url_for('ingresar'))
+
+
+
+# ''''''''''''''''''''''''''''''''''''''''''''
 @app.route('/logout', methods=['GET'])
 def logout():
     if 'username' in session:
@@ -120,16 +172,6 @@ def sobre():
 
 
 #Hago lista para mostrar lista de usuarios y contraseñas en template "secret.html"
-@app.route('/secret', methods=['GET'])
-def secret():
-    if 'username' in session:
-        with open('usuarios.csv', encoding='utf-8') as archivoCsv:
-            users = csv.reader(archivoCsv)
-            lista=list(users)
-            return render_template('secret.html',lista=lista)
-    else:
-        return render_template('sin_permiso.html')
-
 
 
 if __name__ == "__main__":

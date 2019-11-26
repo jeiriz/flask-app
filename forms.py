@@ -13,6 +13,10 @@ class RegistrarForm(LoginForm):
     password_check = PasswordField('Verificar Contraseña', validators=[Required()]) #se hereda la el campo de pass y se agrgea el campo de verificacion
     enviar = SubmitField('Registrarse')
 
+class SearchForm(FlaskForm):
+    search = StringField('A continuación escribir país:', validators=[Required()]) #se hereda la el campo de pass y se agrgea el campo de verificacion
+    enviar = SubmitField('Buscar')
+
 
 '''
 FORMS.PY

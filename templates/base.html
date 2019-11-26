@@ -4,6 +4,7 @@
     {{ super() }}
     <link rel="shortcut icon" href="{{ url_for('static', filename = 'favicon.png') }}" type="image/x-icon">
     <link rel="icon" href="{{ url_for('static', filename = 'favicon.png') }}" type="image/x-icon">
+    
 {% endblock %}
 
 {% block title %}Hola {{ nombre }}{% endblock %}
@@ -26,7 +27,14 @@
                 {% if 'username' in session %}
                 <li><a href="/clientes">Listado de Clientes</a></li>
                 <li><a href="/sobre">Sobre</a></li>
-                <li><a href="/logout">Salir</a></li>
+
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Consultas<span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/buscador">Búsqueda por país</a></li>
+                    </ul>
+                </li>
+
+                <a href="/logout"><button class="btn btn-danger navbar-btn">Salir</button></a>
                 {% else %}
                 <li><a href="/ingresar">Ingresar</a></li>
                 <li><a href="/registrar">Registrarse</a></li>
@@ -44,6 +52,7 @@
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         {{ message }}
     </div>
+    
     {% endfor %}
     {% block page_content %}{% endblock %}
     {% block saraza %}{% endblock %} <!-- Bloque usado en HACKED.HTML -->

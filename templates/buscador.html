@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}Buscador{% endblock %}
+
+{% block page_content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<h1>Buscador</h1>
+<h3>Clientes por país</h3>
+
+<div class="page-header">
+    {{ wtf.quick_form(formulario) }}
+</div>
+<div>
+	<ul>     <!--  listas no ordenadas -->
+        {% for i in paises %}
+     	   <li><a href="/buscador/{{i}}">{{i}}</a></li> <!-- puntos -->
+        {% endfor %}
+    </ul> 
+</div>
+{% endblock %}
