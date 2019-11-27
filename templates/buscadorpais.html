@@ -16,7 +16,7 @@
                     <th>{{ e }}</th>  <!-- negrita -->        
                 {% endfor %}
             </tr>  
-                {% for cliente in lista %}
+                {% for cliente in lista %} <!-- lista con diccionario -->
                     <tr> 
                     {% for k,v in cliente.items() %}  
                         <td>{{ v }}</td> <!-- celda -->

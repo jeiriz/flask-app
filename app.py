@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 from flask import Flask, render_template, redirect, url_for, flash, session, request
-from flask import jsonify,make_response
+#from flask import jsonify,make_response
 from flask_bootstrap import Bootstrap
 
 from forms import LoginForm, RegistrarForm, SearchForm
@@ -25,15 +25,11 @@ def e_interno(e):
 def no_encontrado(e):
     return render_template('500.html'), 500
 
-#PARA PROBAR TEMPLATE ERROR 500
-@app.route('/500')
-def Error500():
-    return render_template('500.html'), 500
 
 #obtengo IP PUBLICA del que hace el request
 @app.route('/hacked', methods=["GET"])
 def hacked():
-    ip= request.remote_addr #proxy (intermediario) entorno desarollo
+    ip= request.remote_addr #entorno desarollo
     return render_template('hacked.html',ip=ip)
 
 @app.route('/secret', methods=['GET'])
@@ -41,7 +37,7 @@ def secret():
     if 'username' in session:
         with open('usuarios.csv', encoding='utf-8') as archivoCsv:
             users = csv.reader(archivoCsv)
-            lista=list(users)
+            lista=list(users) #lista con listas
             return render_template('secret.html',lista=lista)
     else:
         return render_template('sin_permiso.html')
@@ -56,7 +52,7 @@ def ingresar():
             registro = next(archivo_csv)
             while registro:
                 if formulario.usuario.data == registro[0] and formulario.password.data == registro[1]: 
-                    flash('Se ha logueado correctamente!')  # Cartel notificacion 
+                    flash('Se ha logueado correctamente!')
                     session['username'] = formulario.usuario.data
                     return redirect(url_for('logged'))
                 registro = next(archivo_csv, None)
@@ -99,18 +95,19 @@ def clientesCont():
  
  #'''''''''''''''''''''''''''''''''''''''' 
 
-#Transformo en lista el archivo CSV y Utilizo la funcion anteriores para mostrar todo en un mismo template "clientes.html"
+#Transformo en lista el archivo CSV y Utilizo la funcion anterior para mostrar todo en un mismo template "clientes.html"
 @app.route('/clientes', methods=['GET'])
 def clientesListado():
     if 'username' in session:  
         with open('clientes.csv', encoding='utf-8') as archivoCsv:
             clientes = csv.reader(archivoCsv)
             lista=list(clientes) #listas por cada fila
-            cont=clientesCont()  #llamo contador (funcion modularizada y reutilizable)
+            cont=clientesCont()
         return render_template('clientes.html',lista=lista,cont=cont)
     else:
         return redirect(url_for('ingresar'))
 
+#Funcion convierte archivo CSV en DictReader
 def dictCsv(csvArc):
     archivoCsv=open(csvArc, encoding='utf-8')
     lista=csv.DictReader(archivoCsv)
@@ -140,15 +137,14 @@ def buscadorPais():
 @app.route('/buscador/<i>') #pais
 def resultadoBuscadorPais(i):
     if 'username' in session:
-        with open('clientes.csv', encoding='utf-8') as archivoCsv:
-            listado = csv.DictReader(archivoCsv) 
-            firstRow=next(listado) #funcion nico, permite obtener primera linea
-            lista=[]
-            for columna in listado:
-                if columna['País'] == i:
-                    lista.append(columna) #si el pais elegido es igual a el contenido de la columna agrega la filalista=lista
-            cont=len(lista)
-            return render_template('buscadorpais.html',lista=lista,cont=cont,firstRow=firstRow)
+        listado = dictCsv("clientes.csv")
+        firstRow=next(listado) #funcion nico, permite obtener primera linea
+        lista=[]
+        for columna in listado:
+            if columna['País'] == i: # I > pais seleccionado en "buscador"
+                lista.append(columna)
+        cont=len(lista)
+        return render_template('buscadorpais.html',lista=lista,cont=cont,firstRow=firstRow)
     return redirect(url_for('ingresar'))
 
 
@@ -169,10 +165,6 @@ def sobre():
         return render_template('sobre.html')
     else:
         return redirect(url_for('ingresar'))
-
-
-#Hago lista para mostrar lista de usuarios y contraseñas en template "secret.html"
-
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
