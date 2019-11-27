@@ -120,12 +120,12 @@ def dictCsv(csvArc):
 def buscadorPais():
     if 'username' in session:
         listado=dictCsv("clientes.csv")
-        formulario = SearchForm() #instancia objeto en formulario para poder usarlo
+        formulario = SearchForm(enviar="enviar") #instancia objeto en formulario para poder usarlo
         pais=formulario.search.data #Argentina
         if formulario.validate_on_submit(): #si llena el buscador
             paises=[]
             for i in listado:
-                if pais in i['País'] : #si Argentina se encuentra en columna Pais
+                if pais in i['País'] and i["País"] not in paises: #si Argentina se encuentra en columna Pais
                     paises.append(i['País']) #agerga el pais encontrado
             if paises: #si tiene contenido
                 flash("Búsqueda exitosa")

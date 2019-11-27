@@ -3,9 +3,10 @@
 {% block title %}PERMISO DENEGADO{% endblock %}
 
 {% block page_content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <div class="page-header">
     <h1>Intruso detectado</h1>
-    <p>Si ingresaste aquí por error puedes acceder al siguiente <a href={{ url_for('hacked') }} class="btn btn-info">link</a> para salir</p> <!-- Peque;a trampa jeje -->
+    <p>Si ingresaste aquí por error puedes acceder al siguiente <a href={{ url_for('hacked') }} class="secret">link</a> para huir de la desgracia</p> <!-- Peque;a trampa jeje -->
 </div>
 {% endblock %}
 

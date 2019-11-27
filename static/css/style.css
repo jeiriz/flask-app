@@ -1,5 +1,45 @@
 /*CSS General y Template Clientes*/
 
+.secret {
+  color: #318aac !important;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 0.5em 1.2em;
+  background: rgba(0,0,0,0);
+  border: 2px solid;
+  border-color: #318aac;
+  transition: all 1s ease;
+  position: relative;
+  text-decoration: none;
+}
+.secret:hover {
+  background: #318aac;
+  color: #fff !important;
+  text-decoration: none;
+}
+
+#enviar{
+color: #fff !important;
+text-transform: uppercase;
+text-decoration: none;
+background: #17A589;
+padding: 10px;
+border-radius: 5px;
+display: inline-block;
+border: none;
+transition: all 0.4s ease 0s;
+width:90px;
+height: 40px;
+}
+
+#enviar:hover{
+background: #434343;
+letter-spacing: 1px;
+-webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+-moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+transition: all 0.4s ease 0s;
+}
 
 /*BUSCADOR CONSULTAS*/
 #myInput {
@@ -54,7 +94,7 @@
 	text-shadow: 0 1px 0 rgba(255,255,255,.5);
 }
 /*TABLA USUARIOS*/
-.secret tr:first-child td{
+.secretTable tr:first-child td{
 	color:white;
 	font-weight: bold;
 	font-size: 18px;
@@ -65,7 +105,7 @@
 	background-image: -o-linear-gradient(top, #17A589, #17A589);
 	background-image: linear-gradient(to bottom, #17A589, #17A589);
 }
-.secret tr:second-child td{
+.secretTable tr:second-child td{
 color:white;
 	font-weight: bold;
 	font-size: 18px;
@@ -76,7 +116,7 @@ color:white;
 	background-image: -o-linear-gradient(top, #17A589, #17A589);
 	background-image: linear-gradient(to bottom, #17A589, #17A589);
 	}
-.secret{
+.secretTable{
 	width:20%;
 }
 p{
