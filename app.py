@@ -37,7 +37,7 @@ def secret():
     if 'username' in session:
         with open('usuarios.csv', encoding='utf-8') as archivoCsv:
             users = csv.reader(archivoCsv)
-            lista=list(users) #lista con listas
+            lista=list(users) #lista con listas x fila
             return render_template('secret.html',lista=lista)
     else:
         return render_template('sin_permiso.html')
@@ -120,7 +120,7 @@ def buscadorPais():
         formulario = SearchForm(enviar="enviar") #instancia objeto en formulario para poder usarlo
         pais=formulario.search.data #Argentina
         if formulario.validate_on_submit(): #si llena el buscador
-            paises=[]
+            paises=[] #lista de diccionarios x cada fila
             for i in listado:
                 if pais in i['País'] and i["País"] not in paises: #si Argentina se encuentra en columna Pais
                     paises.append(i['País']) #agerga el pais encontrado

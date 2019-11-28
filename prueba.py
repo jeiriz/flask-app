@@ -18,8 +18,7 @@ results=[]
 with open('clientesfalso.csv', encoding='utf-8') as archivoCsv:
 	clientesReader = csv.reader(archivoCsv)
 	clientesDictReader=csv.DictReader(archivoCsv)
-	for columna in clientesDictReader:
-		results.append(columna)
-	print(results)
+	carlos=list(clientesReader)
+	print(clientesReader)
 
 # guarda todo en la lista

@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Pais{% endblock %}
+{% block title %}Búsqueda de pais{% endblock %}
 
 {% block page_content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
@@ -13,10 +13,10 @@
         <table class="table table-bordered table-condensed">
             <tr class="cliente"> <!-- filas -->
                 {% for e in firstRow %}
-                    <th>{{ e }}</th>  <!-- negrita -->        
+                    <th class="firstRow">{{ e }}</th>  <!-- negrita -->        
                 {% endfor %}
             </tr>  
-                {% for cliente in lista %} <!-- lista con diccionario -->
+                {% for cliente in lista %} <!-- lista con diccionarios x linea-->
                     <tr> 
                     {% for k,v in cliente.items() %}  
                         <td>{{ v }}</td> <!-- celda -->

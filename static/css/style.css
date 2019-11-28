@@ -18,6 +18,7 @@
   text-decoration: none;
 }
 
+ /*Boton enviar de busqueda*/
 #enviar{
 color: #fff !important;
 text-transform: uppercase;
@@ -61,8 +62,17 @@ transition: all 0.4s ease 0s;
 	width: 60% !important;
 }
 /*TABLA CLIENTES */
+
+.firstRow {
+	text-align:center;
+	vertical-align: middle !important;
+}
+
+
 .clientes tr:first-child td{
 	font-weight: bold;
+	text-align:center;
+	vertical-align: middle !important;
 	font-size: 18px;
 	border: solid #ccc 2px;
 	background-image: -webkit-linear-gradient(top, #17A589, #17A589);
@@ -94,9 +104,13 @@ transition: all 0.4s ease 0s;
 	text-shadow: 0 1px 0 rgba(255,255,255,.5);
 }
 /*TABLA USUARIOS*/
+
+.secretTableDiv{
+	margin-left: 40%;
+}
 .secretTable tr:first-child td{
+
 	color:white;
-	font-weight: bold;
 	font-size: 18px;
 	border: solid #ccc 1px;
 	background-image: -webkit-linear-gradient(top, #17A589, #17A589);
@@ -106,7 +120,7 @@ transition: all 0.4s ease 0s;
 	background-image: linear-gradient(to bottom, #17A589, #17A589);
 }
 .secretTable tr:second-child td{
-color:white;
+	color:white;
 	font-weight: bold;
 	font-size: 18px;
 	border: solid #ccc 1px;
@@ -118,6 +132,12 @@ color:white;
 	}
 .secretTable{
 	width:20%;
+	text-align:center;
+	vertical-align: middle;
+}
+.alert-danger{
+	width: 92%;
+	margin-left: -27%;
 }
 p{
     font-family: verdana;
