@@ -1,5 +1,75 @@
 /*CSS General y Template Clientes*/
 
+.contenedor {
+	margin: auto;
+	display: table;
+}
+
+.contenedor h1 { 
+	position: relative; 
+	float: left;
+	background: white;
+	color: black;
+	font-family: monospace; 
+}
+
+.contenedor h1 span {
+    position:absolute;
+    right:0;
+    width:0;
+    background: white;
+    border-left: 1px solid #000;
+    animation: escribir 5s steps(32) infinite alternate;
+    font-family: monospace; 
+}
+
+@keyframes escribir {
+    from { width: 100% }
+    to { width:0 }
+}
+
+.noti{
+font-family: 'Baskervville', serif;
+width: 40%;
+
+text-align: center;
+float:left;
+margin-left: 60px;
+}
+
+
+.contacto{
+	font-family: 'Baskervville', serif;
+
+border-left: 3px solid #9B9B9B;
+width: 40%;
+height: 300px;
+margin-left: 50px;
+float:left;
+text-align: center;
+
+}
+.contacto p{
+font-family: 'Baskervville', serif;
+font-style: italic;
+margin-left: 30px;
+
+
+}
+
+.noti p{
+	font-family: 'Baskervville', serif;
+	font-style: italic;
+
+}
+
+.ubicacion{
+	margin-top: 300px;
+	font-family: 'Baskervville', serif;
+	text-align: center;
+
+}
+/*-------------*/
 .secret {
   color: #318aac !important;
   font-size: 12px;

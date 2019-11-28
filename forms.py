@@ -5,7 +5,7 @@ from wtforms.validators import Required, Length, InputRequired
 
 class LoginForm(FlaskForm):
     usuario = StringField('Nombre de usuario', validators=[Required()])
-    password = PasswordField('Contraseña', validators=[InputRequired('La contraseña es requerida'),Length(min=5,message='Deben ser mas de 5 caracteres')])
+    password = PasswordField('Contraseña', validators=[Required(),Length(min=5,message='Deben ser mas de 5 caracteres')])
     enviar = SubmitField('Ingresar')
 
 

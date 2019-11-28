@@ -1,20 +1,50 @@
 {% extends "base.html" %}
 <!-- Template inicio -->
 {% block title %}Bienvenido {{usuario}}!{% endblock %}
-
 {% block page_content %}
-<div class="page-header">    
-    <h1>Conesa, el sabor del encuentro</h1>
+<link href="https://fonts.googleapis.com/css?family=Baskervville:400,400i&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<hr>
+<div class="contenedor">    
+    <h1>Conesa, el sabor del encuentro..<span>&#160;</span></h1>
 </div>
+<hr>
 <div>
 {% if 'username' not in session %}
 <p>Para iniciar sesión haga click <a href="/ingresar">aquí</a>. Si todavía no se registró ingrese al siguiente<a href="/registrarse"> link</a></p>
 
 {%else%}
-<h4><a href="https://www.xataka.com/">Noticias</a></h4>
+<!-- <div class="desplegable">
+<h4>Haz click <a href="https://www.xataka.com/">aquí </a>para acceder a las noticias</h4>
+</div> -->
 {% endif %}
 </div>
 
+<div class="noti">
+	<h2 style="font-weight: bold">Noticias</h2>
+	<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</P>
+</div>
+<div class="contacto">
+	<h2 style="font-weight: bold">Contacto</h2>
+	<P>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod</P>
+</div>
+<br>
+<br>
+<div class="ubicacion">
+	<h2 style="font-weight: bold">Ubicación</h2>
+	<P><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3283.8446524805886!2d-58.37937068468786!3d-34.60808956523666!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bccadce73e78df%3A0xd77c78b2c73f7ce!2sBitson!5e0!3m2!1ses!2sar!4v1574947806002!5m2!1ses!2sar" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe></P>
+
+</div>
 {% endblock %}
 
 
